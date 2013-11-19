@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+***Application => Name : Should match the folder name in the root/published folder
+***ExceptionLogPath => Nature : Absolute/Relative
+-->
+<Configuration>
+  <Modules>
+    <Module>
+      <Name>ADMIN</Name>
+      <Applications>        
+        <Application>
+          <Name>B2BRole</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>B2CRole</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>FOSRole</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>B2CRoleService</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>BLTravis</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ConnectionString>Data Source=.;Initial Catalog=dbEngine;Integrated Security=SSPI</ConnectionString>
+          <ExceptionLogPath>
+            <Path>D:\ApplicationLogs\ExceptionLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>BLTravisService</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ConnectionString>Data Source=.;Initial Catalog=dbEngine;Integrated Security=SSPI</ConnectionString>
+          <ExceptionLogPath>
+            <Path>D:\ApplicationLogs\ExceptionLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+      </Applications>
+    </Module>
+    <Module>
+      <Name>Booking Engine</Name>
+      <Applications>
+        <Application>
+          <Name>BISCORP</Name>
+          <HasWBSLogs>true</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>BISCORPService</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+        </Application>
+        <Application>
+          <Name>BLFlights</Name>
+          <HasWBSLogs>true</HasWBSLogs>
+          <ConnectionString>Data Source=.;Initial Catalog=dbEngine;Integrated Security=SSPI</ConnectionString>
+          <ExceptionLogPath>
+            <Path>D:\ApplicationLogs\ExceptionLogs\BLCredit_Logs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>BLFlightServices</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ConnectionString>Data Source=.;Initial Catalog=dbEngine;Integrated Security=SSPI</ConnectionString>
+          <ExceptionLogPath>
+            <Path>D:\ApplicationLogs\ExceptionLogs\BLCredit_Logs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+      </Applications>      
+    </Module>
+  </Modules>
+  <Defaults>
+    <ExceptionLogPath>
+      <Path>ExceptionLogs</Path>
+      <Nature>Relative</Nature>
+    </ExceptionLogPath>
+    <ConnectionString>Data Source=EDCORE\SQLSVR2K8;Initial Catalog=dbBISSeg;User ID=sa;Password=adm!n2K8</ConnectionString>
+    <!--<ConnectionString>Data Source=.;Initial Catalog=dbBISRole;Integrated Security=SSPI</ConnectionString>-->
+  </Defaults>
+</Configuration>

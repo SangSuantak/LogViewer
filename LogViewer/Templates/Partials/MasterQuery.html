@@ -1,0 +1,46 @@
+﻿<form name="form1" role="form" class="form-inline" data-ng-submit="getMasterQuery()">
+    <div class="form-group">
+        <input type="text" class="form-control input-sm" data-ng-model="ReferenceId" placeholder="Reference Id" title="Reference Id" 
+            data-ng-required="true" data-select-on-click=""/>
+    </div>
+    <div class="form-group">
+        <select data-ng-model="Module" data-ng-options="mod.Name for mod in Modules" class="form-control input-sm" title="Module"
+            data-ng-required="true">
+            <option value="">Module</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select data-ng-model="Application" data-ng-options="app for app in Applications" class="form-control input-sm" title="Application"
+            data-ng-required="true">
+            <option value="">Application</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="View" />        
+    </div>
+</form>
+<div class="mar-t10px">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default row" data-ng-repeat="data in MasterQueryData.">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{$index+1}}.{{log.TransactionName}}&nbsp;-&nbsp;{{log.CreationDate | date: "dd-MM-yyyy HH:mm:ss"}}</a>
+                </h4>
+            </div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="col-md-6 col-xs-12">
+                        <h5>Input XML</h5>
+                        <p class="well" style="height: 100px; overflow-y: scroll;">{{log.InputXML}}</p>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <h5>Output XML</h5>
+                        <p class="well" style="height: 100px; overflow-y: scroll;">{{log.OutputXML}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div>{{Error}}</div>
+</div>

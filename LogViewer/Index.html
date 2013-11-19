@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="LogApp">
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Content/css/bootstrap.min.css" />
+    <link href="Content/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/css/style.css" rel="stylesheet" />
+</head>
+<body data-ng-cloak="">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-ng-controller="HeaderController">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lv-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Log Viewer</a>
+                </div>
+                <div class="collapse navbar-collapse" id="lv-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li data-ng-class="{ active: isActive('/AppLog')}">
+                            <a href="#/AppLog" class="navbar-link">Application Logs</a>
+                        </li>
+                        <li data-ng-class="{ active: isActive('/WBSLog')}">
+                            <a href="#/WBSLog" class="navbar-link">Web Service XML Logs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <div data-ng-view="" id="ng-view" class="row repeated-item">
+            </div>
+        </div>
+    </section>
+
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <label class="label label-default pull-right">
+                Site has been optimized for any browser heading towards HTML5 & CSS3
+            </label>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="Scripts/Vendor/jquery-2.0.3.min.js"></script>    
+    <script type="text/javascript" src="Scripts/Vendor/angular.js"></script>    
+    <script src="Scripts/Vendor/angular-route.min.js"></script>    
+    <script src="Scripts/Vendor/angular-sanitize.min.js"></script>
+    <!--<script src="Scripts/Vendor/angular-animate.min.js"></script>-->    
+    <script type="text/javascript" src="Scripts/Vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/Vendor/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script type="text/javascript" src="Scripts/Vendor/moment.min.js"></script>
+    <script type="text/javascript" src="Scripts/Util/Utility.js"></script>
+    <script type="text/javascript" src="Scripts/Main.js"></script>
+    <script type="text/javascript" src="Scripts/App/Directives/Directives.js"></script>
+    <script type="text/javascript" src="Scripts/App/Services/DataFactory.js"></script>
+    <script type="text/javascript" src="Scripts/App/Filters/Filters.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/HeaderController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/AppLogController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/WBSLogController.js"></script>
+
+</body>
+</html>
