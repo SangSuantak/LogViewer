@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace LogViewer.Utils
 {
@@ -39,6 +40,19 @@ namespace LogViewer.Utils
             {
                 return obj.ToString().Trim();
             }
+        }
+
+        public static string GenerateSalt()
+        {
+            Random objRandom = new Random();
+            string _sAvailableCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#*@$^";
+            StringBuilder _sbGeneratedSalt = new StringBuilder();
+            int _iSize = 10;
+            for (int i = 0; i < _iSize; i++)
+            {
+                _sbGeneratedSalt.Append(_sAvailableCharacters[objRandom.Next(_sAvailableCharacters.Length)]);
+            }
+            return _sbGeneratedSalt.ToString();
         }
     }
 }

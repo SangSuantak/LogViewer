@@ -12,5 +12,8 @@ namespace LogViewer.Models
         public string ReferenceID { get; set; }
         public string Module { get; set; }
         public string Application { get; set; }
+
+        public string EncrInputText { get; set; }
+        public string SaltText { get; set; }
     }
 }

@@ -58,7 +58,7 @@
         <Application>
           <Name>BLFlights</Name>
           <HasWBSLogs>true</HasWBSLogs>
-          <ConnectionString>Data Source=.;Initial Catalog=dbEngine;Integrated Security=SSPI</ConnectionString>
+          <ConnectionString>Data Source=EDCORE\SQLSVR2K8;Initial Catalog=ECOM_30Sept2011;User ID=sa;Password=d3v$QL$3rv3r</ConnectionString>
           <ExceptionLogPath>
             <Path>D:\ApplicationLogs\ExceptionLogs\BLCredit_Logs</Path>
             <Nature>Absolute</Nature>
@@ -81,7 +81,7 @@
       <Path>ExceptionLogs</Path>
       <Nature>Relative</Nature>
     </ExceptionLogPath>
-    <ConnectionString>Data Source=EDCORE\SQLSVR2K8;Initial Catalog=dbBISSeg;User ID=sa;Password=adm!n2K8</ConnectionString>
+    <ConnectionString>Data Source=EDCORE\SQLSVR2K8;Initial Catalog=dbBISSeg;User ID=sa;Password=d3v$QL$3rv3r</ConnectionString>
     <!--<ConnectionString>Data Source=.;Initial Catalog=dbBISRole;Integrated Security=SSPI</ConnectionString>-->
   </Defaults>
 </Configuration>

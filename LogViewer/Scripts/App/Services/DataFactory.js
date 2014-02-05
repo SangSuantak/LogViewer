@@ -24,6 +24,14 @@ LogApp.factory("dataFactory", ["$http", function ($http) {
         return $http.get(_urlBase + "GetWBSApplications");
     };
 
+    _datFactory.encryptPlainText = function (QueryInput) {
+        return $http.post(_urlBase + "EncryptPlainText", QueryInput);
+    };
+
+    _datFactory.decryptText = function (QueryInput) {
+        return $http.post(_urlBase + "DecryptText", QueryInput);
+    };
+
     return _datFactory;
 
 }]);

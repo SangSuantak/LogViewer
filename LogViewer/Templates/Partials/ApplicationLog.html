@@ -1,5 +1,5 @@
 ﻿<form name="form1" role="form" class="form-inline" data-ng-submit="getApplicationLog()">
-    <div class="form-group datepicker">        
+    <div class="form-group">        
         <!--<input type="text" class="form-control input-sm" data-ng-model="LogDateString" placeholder="Log Date" title="Log Date" 
             data-ng-required="true" data-select-on-click=""/>-->
         <input type="text" class="form-control input-sm" data-datepicker-popup="dd-MM-yyyy" data-ng-model="LogDateString" data-is-open="opened" 
@@ -11,8 +11,8 @@
         <select data-ng-model="Module" data-ng-options="mod.Name for mod in Modules" class="form-control input-sm" title="Module"
             data-ng-required="true">
             <option value="">Module</option>
-        </select>        
-    </div>    
+        </select>
+    </div>
     <div class="form-group">
         <select data-ng-model="Application" data-ng-options="app for app in Applications" class="form-control input-sm" title="Application"
             data-ng-required="true">
@@ -24,11 +24,11 @@
         <span class="loading" data-ng-show="showLoader"></span>
     </div>
 </form>
-<div class="alert alert-warning mar-t10px animate-show-hide" data-ng-show="showAppendInfo()">
-    Please be patient, logs are being appended in the background to keep the UI responsive.
+<div class="alert alert-warning mar-t10px" data-ng-show="showAppendInfo()">  
+  Please be patient, logs are being appended in the background to keep the UI responsive.
 </div>
 <div class="mar-t10px">
-    <p data-ng-repeat="log in Log" class="repeated-item">
+    <p data-ng-repeat="log in Log">
         <span data-ng-bind-html-unsafe="log"></span>
     </p>    
 </div>

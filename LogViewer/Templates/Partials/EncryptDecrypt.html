@@ -1,0 +1,65 @@
+﻿<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+    <li class="active" data-ng-click="emptyData()"><a href="#encrypt" data-toggle="tab">Encrypt</a></li>
+    <li data-ng-click="emptyData()"><a href="#decrypt" data-toggle="tab">Decrypt</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active fade in" id="encrypt">
+        <div class="mar-t10px">
+            <form name="form1" role="form" class="form-inline" data-ng-submit="encryptPlainText()">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm w-300px" data-ng-model="EncrInputText" placeholder="Text to Encrypt" title="Text to Encrypt"
+                           data-ng-required="true" data-select-on-click="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Encrypt" />
+                </div>
+            </form>
+            <div class="mar-t10px" data-ng-show="EncryptedValue">
+                <div class="input-group">
+                    <span class="input-group-addon">Ciphertext</span>
+                    <input type="text" class="form-control" value="{{EncryptedValue.CipherText}}" data-select-on-click="" />
+                </div>
+                <div class="input-group mar-t5px">
+                    <span class="input-group-addon">Salt</span>
+                    <input type="text" class="form-control" value="{{EncryptedValue.Salt}}" data-select-on-click="" />
+                </div>                
+            </div>
+            <div class="alert alert-danger mar-t10px" data-ng-show="Error">
+                There was a problem while trying to encrypt the provided text. Please check your input.
+                <br />
+                Actual Message:&nbsp;{{Error}}
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="decrypt">
+        <div class="mar-t10px">
+            <form name="form2" role="form" class="form-inline" data-ng-submit="decryptText()">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm w-300px" data-ng-model="EncrInputText" placeholder="Ciphertext to Decrypt" title="Ciphertext to Decrypt"
+                           data-ng-required="true" data-select-on-click="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm" data-ng-model="SaltText" placeholder="Salt" title="Salt"
+                           data-ng-required="true" data-select-on-click="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Decrypt" />
+                </div>
+            </form>
+        </div>
+        <div class="mar-t10px" data-ng-show="OriginalText">
+            <div class="input-group">
+                <span class="input-group-addon">Original Text</span>
+                <input type="text" class="form-control" value="{{OriginalText}}" data-select-on-click="" />                
+            </div>                       
+        </div>
+        <div class="alert alert-danger mar-t10px" data-ng-show="Error">
+            There was a problem while trying to decrypt the Ciphertext. Please check your input.
+            <br />
+            Actual Message:&nbsp;{{Error}}
+        </div>
+    </div>
+</div>

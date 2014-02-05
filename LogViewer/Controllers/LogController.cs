@@ -1,6 +1,7 @@
 ﻿using LogViewer.Data;
 using LogViewer.Models;
 using LogViewer.Models.MasterQuery;
+using LogViewer.Models.EncryptDecrypt;
 using LogViewer.Utils;
 using System;
 using System.Collections.Generic;
@@ -122,6 +123,60 @@ namespace LogViewer.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK,
                 new { Applications = _lstApplications });
+        }
+
+        [HttpPost]
+        public HttpResponseMessage EncryptPlainText([FromBody]QueryInput QueryInput)
+        {
+            try
+            {
+                string _strSalt = Utility.GenerateSalt();
+                string _strCipherText = EncryptDecrypt.Encrypt(QueryInput.EncrInputText, _strSalt);
+
+                EncryptedValue _objEncrValue = new EncryptedValue { 
+                    CipherText = _strCipherText,
+                    Salt = _strSalt
+                };
+
+                if (_objEncrValue != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        new { EncryptedValue = _objEncrValue });
+                }
+                else
+                {
+                    throw new Exception("Encryption Failed");
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                new { Error = e.Message });
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage DecryptText([FromBody]QueryInput QueryInput)
+        {
+            try
+            {
+                string _strDecryptedValue = EncryptDecrypt.Decrypt(QueryInput.EncrInputText, QueryInput.SaltText);
+
+                if (!string.IsNullOrWhiteSpace(_strDecryptedValue))
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        new { DecryptedValue = _strDecryptedValue });
+                }
+                else
+                {
+                    throw new Exception("Decryption Failed");
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                new { Error = e.Message });
+            }
         }
     }
 }

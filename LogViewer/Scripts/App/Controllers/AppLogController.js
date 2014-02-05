@@ -34,7 +34,7 @@ LogApp.controller("AppLogController", ["$scope", "$timeout", "dataFactory", func
         LogChunkAppendCount++;
         $scope.Log.push(TempLog[LogChunkAppendCount - 1]);        
         if (LogChunkAppendCount <= LogChunkCount) {
-            _objTimeout = $timeout(appendLog, 1);
+            _objTimeout = $timeout(appendLog, 30);
         }
         else {
             $timeout.cancel(_objTimeout);
@@ -71,7 +71,7 @@ LogApp.controller("AppLogController", ["$scope", "$timeout", "dataFactory", func
             $scope.Applications = newModule.Applications;
         }
     });
-    
+
     $scope.showAppendInfo = function () {
         return $scope.showLoader && LogChunkCount > 50;
     };

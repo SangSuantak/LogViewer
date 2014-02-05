@@ -1,6 +1,6 @@
 ﻿angular.module("LogApp")
-.filter("unsafeHtml", function ($sce) {
+.filter("trustAsHtml", ["$sce", function ($sce) {
     return function (input) {
         return $sce.trustAsHtml(input); 
     };
-});
+}]);

@@ -27,6 +27,9 @@
                         <li data-ng-class="{ active: isActive('/WBSLog')}">
                             <a href="#/WBSLog" class="navbar-link">Web Service XML Logs</a>
                         </li>
+                        <li data-ng-class="{ active: isActive('/EncryptionDecryption')}">
+                            <a href="#/EncryptionDecryption" class="navbar-link">Encryption & Decryption</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +38,7 @@
 
     <section>
         <div class="container">
-            <div data-ng-view="" id="ng-view" class="row repeated-item">
+            <div data-ng-view="" id="ng-view" class="row">
             </div>
         </div>
     </section>
@@ -49,12 +52,12 @@
     </footer>
 
 
-    <script type="text/javascript" src="Scripts/Vendor/jquery-2.0.3.min.js"></script>    
-    <script type="text/javascript" src="Scripts/Vendor/angular.js"></script>    
-    <script src="Scripts/Vendor/angular-route.min.js"></script>    
-    <script src="Scripts/Vendor/angular-sanitize.min.js"></script>
-    <!--<script src="Scripts/Vendor/angular-animate.min.js"></script>-->    
+    <script type="text/javascript" src="Scripts/Vendor/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="Scripts/Vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/Vendor/angular.js"></script>
+    <!--<script type="text/javascript" src="Scripts/Vendor/angular-route.min.js"></script>-->
+    <script type="text/javascript" src="Scripts/Vendor/angular-sanitize.min.js"></script>
+    <!--<script type="text/javascript" src="Scripts/Vendor/angular-animate.min.js"></script>-->
     <script type="text/javascript" src="Scripts/Vendor/ui-bootstrap-tpls-0.6.0.js"></script>
     <script type="text/javascript" src="Scripts/Vendor/moment.min.js"></script>
     <script type="text/javascript" src="Scripts/Util/Utility.js"></script>
@@ -65,6 +68,7 @@
     <script type="text/javascript" src="Scripts/App/Controllers/HeaderController.js"></script>
     <script type="text/javascript" src="Scripts/App/Controllers/AppLogController.js"></script>
     <script type="text/javascript" src="Scripts/App/Controllers/WBSLogController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/EncryptDecryptController.js"></script>
 
 </body>
 </html>

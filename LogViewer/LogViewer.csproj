@@ -143,6 +143,8 @@
     <Compile Include="Models\Configuration\Defaults.cs" />
     <Compile Include="Models\Configuration\ExceptionLogPath.cs" />
     <Compile Include="Models\Configuration\Module.cs" />
+    <Compile Include="Models\EncryptDecrypt\EncryptDecrypt.cs" />
+    <Compile Include="Models\EncryptDecrypt\EncryptedValue.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Global.cs" />
     <Compile Include="Models\MasterQuery\MasterQuery.cs" />
@@ -164,7 +166,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Configuration\Configuration.xml" />
+    <Content Include="Configuration\Configuration.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -174,11 +178,13 @@
     <Content Include="Content\images\ajax_load.GIF" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
+    <Content Include="Scripts\App\Controllers\EncryptDecryptController.js" />
     <Content Include="Scripts\App\Controllers\AppLogController.js" />
     <Content Include="Scripts\App\Controllers\HeaderController.js" />
     <Content Include="Scripts\App\Controllers\MasterQueryController.js" />
     <Content Include="Scripts\App\Controllers\WBSLogController.js" />
     <Content Include="Scripts\App\Directives\Directives.js" />
+    <Content Include="Scripts\App\Directives\SlideToggle.js" />
     <Content Include="Scripts\App\Filters\Filters.js" />
     <Content Include="Scripts\App\Services\DataFactory.js" />
     <Content Include="Scripts\Main.js" />
@@ -210,13 +216,19 @@
     <Content Include="Scripts\Vendor\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\Build_Release.pubxml" />
     <None Include="Scripts\Vendor\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\Vendor\collapse.js" />
     <Content Include="Scripts\Vendor\jquery-2.0.3.js" />
     <Content Include="Scripts\Vendor\jquery-2.0.3.min.js" />
     <Content Include="Scripts\Vendor\moment.min.js" />
     <Content Include="Scripts\Vendor\ui-bootstrap-0.6.0.js" />
     <Content Include="Scripts\Vendor\ui-bootstrap-0.6.0.min.js" />
+    <Content Include="Scripts\Vendor\ui-bootstrap-0.7.0.js" />
     <Content Include="Scripts\Vendor\ui-bootstrap-tpls-0.6.0.js" />
+    <Content Include="Scripts\Vendor\ui-bootstrap-tpls-0.7.0.js" />
+    <Content Include="Scripts\Vendor\ui-bootstrap-tpls-0.9.0.js" />
+    <Content Include="Scripts\Vendor\ui-bootstrap-tpls-0.9.0.min.js" />
     <Content Include="Templates\Partials\ApplicationLog.html" />
+    <Content Include="Templates\Partials\EncryptDecrypt.html" />
     <Content Include="Templates\Partials\MasterQuery.html" />
     <Content Include="Templates\Partials\WBSLog.html" />
     <Content Include="Web.config" />

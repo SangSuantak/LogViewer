@@ -9,6 +9,10 @@
             controller: "WBSLogController",
             templateUrl: "Templates/Partials/WBSLog.html"
         })
+        .when("/EncryptionDecryption", {
+            controller: "EncryptDecryptController",
+            templateUrl: "Templates/Partials/EncryptDecrypt.html"
+        })
         .otherwise({ redirectTo: "/AppLog" });
 
     }]);

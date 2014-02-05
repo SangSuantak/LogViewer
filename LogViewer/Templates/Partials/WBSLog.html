@@ -16,7 +16,7 @@
 </form>
 <div class="mar-t10px">
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default row repeated-item" data-ng-repeat="log in WBSLog">
+        <div class="panel panel-default row" data-ng-repeat="log in WBSLog">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{$index+1}}.{{log.TransactionName}}&nbsp;-&nbsp;{{log.CreationDate | date: "dd-MM-yyyy HH:mm:ss"}}</a>
