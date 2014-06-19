@@ -70,6 +70,9 @@ LogApp.controller("AppLogController", ["$scope", "$timeout", "dataFactory", func
         if (newModule) {
             $scope.Applications = newModule.Applications;
         }
+        else {
+            $scope.Applications = [];
+        }
     });
 
     $scope.showAppendInfo = function () {
