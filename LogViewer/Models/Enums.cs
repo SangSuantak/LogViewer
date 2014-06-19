@@ -35,5 +35,11 @@ namespace LogViewer.Models
             Relative
         }
 
+        public enum DirectoryItemType
+        {
+            File,
+            Folder
+        }
+
     }
 }

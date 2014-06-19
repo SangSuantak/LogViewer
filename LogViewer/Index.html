@@ -21,13 +21,16 @@
                 </div>
                 <div class="collapse navbar-collapse" id="lv-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li data-ng-class="{ active: isActive('/AppLog')}">
+                        <li data-ng-class="{ active: isActive('/AppLog')}" data-ng-show="showAppLogs">
                             <a href="#/AppLog" class="navbar-link">Application Logs</a>
                         </li>
-                        <li data-ng-class="{ active: isActive('/WBSLog')}">
-                            <a href="#/WBSLog" class="navbar-link">Web Service XML Logs</a>
+                        <li data-ng-class="{ active: isActive('/GDSLog')}" data-ng-show="showGDSLogs">
+                            <a href="#/GDSLog" class="navbar-link">GDS XML Logs</a>
                         </li>
-                        <li data-ng-class="{ active: isActive('/EncryptionDecryption')}">
+                        <li data-ng-class="{ active: isActive('/LCCLog')}" data-ng-show="showLCCLogs">
+                            <a href="#/LCCLog" class="navbar-link">LCC Logs</a>
+                        </li>
+                        <li data-ng-class="{ active: isActive('/EncryptionDecryption')}" data-ng-show="showEncryptionDecryption">
                             <a href="#/EncryptionDecryption" class="navbar-link">Encryption & Decryption</a>
                         </li>
                     </ul>
@@ -65,10 +68,12 @@
     <script type="text/javascript" src="Scripts/App/Directives/Directives.js"></script>
     <script type="text/javascript" src="Scripts/App/Services/DataFactory.js"></script>
     <script type="text/javascript" src="Scripts/App/Filters/Filters.js"></script>
+    <script type="text/javascript" src="Scripts/App/Route/AppRoute.js"></script>    
     <script type="text/javascript" src="Scripts/App/Controllers/HeaderController.js"></script>
     <script type="text/javascript" src="Scripts/App/Controllers/AppLogController.js"></script>
-    <script type="text/javascript" src="Scripts/App/Controllers/WBSLogController.js"></script>
-    <script type="text/javascript" src="Scripts/App/Controllers/EncryptDecryptController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/GDSLogController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/LCCLogController.js"></script>
+    <script type="text/javascript" src="Scripts/App/Controllers/EncryptDecryptController.js"></script>    
 
 </body>
 </html>

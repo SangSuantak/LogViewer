@@ -133,8 +133,9 @@
     <Compile Include="Configuration\ConfigurationReader.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Data\ApplicationLogData.cs" />
+    <Compile Include="Data\LCCLogData.cs" />
     <Compile Include="Data\MasterQueryData.cs" />
-    <Compile Include="Data\WBSLogData.cs" />
+    <Compile Include="Data\GDSLogData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,9 +144,11 @@
     <Compile Include="Models\Configuration\Defaults.cs" />
     <Compile Include="Models\Configuration\ExceptionLogPath.cs" />
     <Compile Include="Models\Configuration\Module.cs" />
+    <Compile Include="Models\Configuration\Tabs.cs" />
     <Compile Include="Models\EncryptDecrypt\EncryptDecrypt.cs" />
     <Compile Include="Models\EncryptDecrypt\EncryptedValue.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\FileSystem\LogFile.cs" />
     <Compile Include="Models\Global.cs" />
     <Compile Include="Models\MasterQuery\MasterQuery.cs" />
     <Compile Include="Models\MasterQuery\T_FLT_ChangedFareInfo.cs" />
@@ -157,7 +160,7 @@
     <Compile Include="Models\MasterQuery\T_FLT_PaymentInfo.cs" />
     <Compile Include="Models\MasterQuery\T_FLT_UserProfile.cs" />
     <Compile Include="Models\QueryInput.cs" />
-    <Compile Include="Models\WBSLog.cs" />
+    <Compile Include="Models\GDSLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\Utility.cs" />
@@ -180,12 +183,14 @@
     <Content Include="Index.html" />
     <Content Include="Scripts\App\Controllers\EncryptDecryptController.js" />
     <Content Include="Scripts\App\Controllers\AppLogController.js" />
+    <Content Include="Scripts\App\Controllers\LCCLogController.js" />
     <Content Include="Scripts\App\Controllers\HeaderController.js" />
     <Content Include="Scripts\App\Controllers\MasterQueryController.js" />
-    <Content Include="Scripts\App\Controllers\WBSLogController.js" />
+    <Content Include="Scripts\App\Controllers\GDSLogController.js" />
     <Content Include="Scripts\App\Directives\Directives.js" />
     <Content Include="Scripts\App\Directives\SlideToggle.js" />
     <Content Include="Scripts\App\Filters\Filters.js" />
+    <Content Include="Scripts\App\Route\AppRoute.js" />
     <Content Include="Scripts\App\Services\DataFactory.js" />
     <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\Util\Utility.js" />
@@ -229,8 +234,10 @@
     <Content Include="Scripts\Vendor\ui-bootstrap-tpls-0.9.0.min.js" />
     <Content Include="Templates\Partials\ApplicationLog.html" />
     <Content Include="Templates\Partials\EncryptDecrypt.html" />
+    <Content Include="Templates\Partials\Home.html" />
+    <Content Include="Templates\Partials\LCCLog.html" />
     <Content Include="Templates\Partials\MasterQuery.html" />
-    <Content Include="Templates\Partials\WBSLog.html" />
+    <Content Include="Templates\Partials\GDSLog.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -26,8 +26,8 @@ namespace LogViewer.Data
                 string _strLogPath = string.Empty,
                     _strFileName = QueryInput.LogDate.ToString("dd-MMM-yyyy") + ".txt";
 
-                Enums.ExceptionLogPathNature _eExLogPathNature = Enums.ExceptionLogPathNature.Absolute;
-                var _matchedApp = Global.Configuration.Modules
+                Enums.ExceptionLogPathNature _eExLogPathNature = Enums.ExceptionLogPathNature.Absolute;                
+                var _matchedApp = Global.GetGlobalValues().Modules
                     .Where(m => m.Name == QueryInput.Module)
                     .Select(m => new { Application = m.Applications.Where(a => a.Name == QueryInput.Application).First() })
                     .FirstOrDefault();

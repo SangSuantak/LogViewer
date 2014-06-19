@@ -1,9 +1,9 @@
 ﻿var LogApp = angular.module("LogApp");
-LogApp.controller("WBSLogController", ["$scope", "dataFactory", function ($scope, dataFactory) {
+LogApp.controller("GDSLogController", ["$scope", "dataFactory", function ($scope, dataFactory) {
 
     $scope.Applications;
     $scope.QueryInput = {};
-    $scope.WBSLog;
+    $scope.GDSLog;
     $scope.Error;
 
     function getWBSApplications() {
@@ -12,22 +12,22 @@ LogApp.controller("WBSLogController", ["$scope", "dataFactory", function ($scope
         });
     }
 
-    $scope.getWBSLog = function () {
+    $scope.getGDSLog = function () {
         $scope.showLoader = true;
         var QueryInput = {
             ReferenceId: $scope.ReferenceId,
             Application: $scope.Application
         };
 
-        $scope.WBSLog = null;
+        $scope.GDSLog = null;
         $scope.Error = null;
 
-        dataFactory.getWBSLog(QueryInput).success(function (data) {
+        dataFactory.getGDSLog(QueryInput).success(function (data) {
             if (data.Error) {
                 $scope.Error = data.Error;
             }
             else {
-                $scope.WBSLog = data.WBSLog;
+                $scope.GDSLog = data.GDSLog;
             }
             $scope.showLoader = false;
         }).error(function (data) {

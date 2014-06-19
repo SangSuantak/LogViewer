@@ -3,6 +3,7 @@ using LogViewer.Models.Configuration;
 using LogViewer.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace LogViewer.Configuration
@@ -10,9 +11,10 @@ namespace LogViewer.Configuration
     public class ConfigurationReader
     {
         public static LogViewer.Models.Configuration.Configuration ReadConfiguration(string _strPath)
-        {
+        {            
+            LogViewer.Models.Configuration.Configuration _objConfiguration = new LogViewer.Models.Configuration.Configuration();
+            
             XmlDocument _xDoc = new XmlDocument();
-            LogViewer.Models.Configuration.Configuration _objConfiguration = new LogViewer.Models.Configuration.Configuration(); 
             _xDoc.Load(_strPath);
 
             //Get reference to the root element
@@ -45,6 +47,11 @@ namespace LogViewer.Configuration
             {
                 _objModule = new Module();
                 _objModule.Name = module.SelectSingleNode("Name").InnerText;
+
+                if (module.SelectSingleNode("IsLCC") != null)
+                {
+                    _objModule.IsLCC = Convert.ToBoolean(module.SelectSingleNode("IsLCC").InnerText);
+                }
 
                 #region Applications
 
@@ -101,6 +108,21 @@ namespace LogViewer.Configuration
             }
             
             #endregion
+
+            #region Tabs
+
+            Tabs _objTabs = new Tabs();
+            XmlNode _xTabs = _xRootNode.SelectSingleNode("Tabs");
+            _objTabs.ShowApplicationLogs = Convert.ToBoolean(_xTabs.SelectSingleNode("ShowApplicationLogs").InnerText);
+            _objTabs.ShowEncryptionDecryption = Convert.ToBoolean(_xTabs.SelectSingleNode("ShowEncryptionDecryption").InnerText);
+            _objTabs.ShowGDSLogs = Convert.ToBoolean(_xTabs.SelectSingleNode("ShowGDSLogs").InnerText);
+            _objTabs.ShowLCCLogs = Convert.ToBoolean(_xTabs.SelectSingleNode("ShowLCCLogs").InnerText);
+
+            _objConfiguration.Tabs = _objTabs;
+
+            #endregion
+
+            _objConfiguration.LastModifiedDate = File.GetLastWriteTime(_strPath);
 
             return _objConfiguration;
         }

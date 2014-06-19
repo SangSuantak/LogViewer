@@ -15,5 +15,7 @@ namespace LogViewer.Models
 
         public string EncrInputText { get; set; }
         public string SaltText { get; set; }
+
+        public string Path { get; set; }
     }
 }

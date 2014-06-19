@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LogViewer.Models
 {
-    public class WBSLog
+    public class GDSLog
     {
         public string ReferenceId { get; set; }
         public string TransactionName { get; set; }

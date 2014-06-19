@@ -8,8 +8,16 @@ LogApp.factory("dataFactory", ["$http", function ($http) {
         return $http.post(_urlBase + "GetApplicationLog", QueryInput);
     };
 
-    _datFactory.getWBSLog = function (QueryInput) {
-        return $http.post(_urlBase + "GetWBSLog", QueryInput);
+    _datFactory.getGDSLog = function (QueryInput) {
+        return $http.post(_urlBase + "GetGDSLog", QueryInput);
+    };
+
+    _datFactory.getLCCLogDirectory = function (QueryInput) {
+        return $http.post(_urlBase + "GetLCCLogDirectory", QueryInput);
+    };
+
+    _datFactory.getLCCLogFileContent = function (QueryInput) {
+        return $http.post(_urlBase + "GetLCCLogFileContent", QueryInput);
     };
 
     _datFactory.getMasterQueryData = function (QueryInput) {
@@ -17,7 +25,7 @@ LogApp.factory("dataFactory", ["$http", function ($http) {
     };
 
     _datFactory.getMasterData = function () {
-        return $http.get(_urlBase + "GetMasterData");
+        return $http.get(_urlBase + "GetMasterData", { cache: false });
     };
 
     _datFactory.getWBSApplications = function () {
@@ -30,6 +38,14 @@ LogApp.factory("dataFactory", ["$http", function ($http) {
 
     _datFactory.decryptText = function (QueryInput) {
         return $http.post(_urlBase + "DecryptText", QueryInput);
+    };
+
+    _datFactory.getTabConfiguration = function () {
+        return $http.get(_urlBase + "GetTabConfiguration", { cache: false });
+    };
+
+    _datFactory.getMasterDataForLCC = function () {
+        return $http.get(_urlBase + "GetMasterDataForLCC", { cache: false });
     };
 
     return _datFactory;

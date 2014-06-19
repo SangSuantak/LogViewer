@@ -10,11 +10,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LogViewer.Models.FileSystem;
 
 namespace LogViewer.Controllers
 {
     public class LogController : ApiController
     {
+        #region Read the configuration settings
+        
+        [HttpGet]
+        public HttpResponseMessage GetMasterData()
+        {
+            var _lstModules = Global.GetGlobalValues().Modules
+                .Where(m => !m.IsLCC)
+                .Select(m => new { Name = m.Name, Applications = m.Applications.Select(a => a.Name) });
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { Modules = _lstModules });
+        } 
+
+        #endregion
+
+        #region Read Tab Configuration
+
+        [HttpGet]
+        public HttpResponseMessage GetTabConfiguration()
+        {
+            var _tabs = Global.GetGlobalValues().Tabs;
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { Tabs = _tabs });
+        }
+        
+        #endregion
+
+        #region Application Log
+
         /// <summary>
         /// Making the method HttpPost is necessary to receive the form search input
         /// </summary>
@@ -44,23 +75,39 @@ namespace LogViewer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                 new { Log = e.Message });
             }
+        } 
+        
+        #endregion
+        
+        #region GDS Log
+
+        [HttpGet]
+        public HttpResponseMessage GetWBSApplications()
+        {
+            var _lstApplications = Global.GetGlobalValues().Modules
+                .SelectMany(m => m.Applications)
+                .Where(a => a.HasWBSLogs)
+                .Select(a => a.Name);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { Applications = _lstApplications });
         }
 
         [HttpPost]
-        public HttpResponseMessage GetWBSLog([FromBody]QueryInput QueryInput)
+        public HttpResponseMessage GetGDSLog([FromBody]QueryInput QueryInput)
         {
             try
             {
-                string _strConStr = Global.Configuration.Modules.SelectMany(m => m.Applications)
+                string _strConStr = Global.GetGlobalValues().Modules.SelectMany(m => m.Applications)
                     .Where(a => a.Name == QueryInput.Application).FirstOrDefault()
                     .ConnectionString;
 
-                WBSLogData _objWBSLogData = new WBSLogData(_strConStr);
-                var _lstWBSLog = _objWBSLogData.GetWBSLog(QueryInput.ReferenceID);
-                if (_lstWBSLog != null && _lstWBSLog.Count > 0)
+                GDSLogData _objGDSLogData = new GDSLogData(_strConStr);
+                var _lstGDSLog = _objGDSLogData.GetWBSLog(QueryInput.ReferenceID);
+                if (_lstGDSLog != null && _lstGDSLog.Count > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK,
-                    new { WBSLog = _objWBSLogData.GetWBSLog(QueryInput.ReferenceID) });
+                    new { GDSLog = _objGDSLogData.GetWBSLog(QueryInput.ReferenceID) });
                 }
                 else
                 {
@@ -73,14 +120,18 @@ namespace LogViewer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                 new { Error = e.Message });
             }
-        }
+        } 
+        
+        #endregion
 
+        #region Master Query to Read All Table Values - WIP
+        
         public HttpResponseMessage GetMasterQueryData(QueryInput QueryInput)
         {
             try
             {
 
-                string _strConStr = Global.Configuration.Modules.SelectMany(m => m.Applications)
+                string _strConStr = Global.GetGlobalValues().Modules.SelectMany(m => m.Applications)
                         .Where(a => a.Name == QueryInput.Application).FirstOrDefault()
                         .ConnectionString;
 
@@ -102,29 +153,12 @@ namespace LogViewer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                 new { Error = e.Message });
             }
-        }
-
-        [HttpGet]
-        public HttpResponseMessage GetMasterData()
-        {
-            var _lstModules = Global.Configuration.Modules.Select(m => new { Name = m.Name, Applications = m.Applications.Select(a => a.Name) });
-
-            return Request.CreateResponse(HttpStatusCode.OK,
-                new { Modules = _lstModules });
-        }
-
-        [HttpGet]
-        public HttpResponseMessage GetWBSApplications()
-        {
-            var _lstApplications = Global.Configuration.Modules
-                .SelectMany(m => m.Applications)
-                .Where(a => a.HasWBSLogs)
-                .Select(a => a.Name);
-
-            return Request.CreateResponse(HttpStatusCode.OK,
-                new { Applications = _lstApplications });
-        }
-
+        } 
+        
+        #endregion
+                               
+        #region Encrypt/Decrypt
+        
         [HttpPost]
         public HttpResponseMessage EncryptPlainText([FromBody]QueryInput QueryInput)
         {
@@ -133,7 +167,8 @@ namespace LogViewer.Controllers
                 string _strSalt = Utility.GenerateSalt();
                 string _strCipherText = EncryptDecrypt.Encrypt(QueryInput.EncrInputText, _strSalt);
 
-                EncryptedValue _objEncrValue = new EncryptedValue { 
+                EncryptedValue _objEncrValue = new EncryptedValue
+                {
                     CipherText = _strCipherText,
                     Salt = _strSalt
                 };
@@ -177,6 +212,52 @@ namespace LogViewer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                 new { Error = e.Message });
             }
+        } 
+        
+        #endregion                
+
+        #region LCC Logs
+
+        [HttpGet]
+        public HttpResponseMessage GetMasterDataForLCC()
+        {
+            var _lstModules = Global.GetGlobalValues().Modules
+                .Where(m => m.IsLCC)
+                .Select(m => new { Name = m.Name, Applications = m.Applications.Select(a => a.Name) });
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { Modules = _lstModules });
         }
+
+        /// <summary>
+        /// Read directory information
+        /// </summary>
+        /// <param name="QueryInput"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResponseMessage GetLCCLogDirectory([FromBody]QueryInput QueryInput)
+        {
+            LCCLogData _objLCCLogData = new LCCLogData(QueryInput);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { LCCLog = _objLCCLogData.GetLCCDirectoryList() });
+        }
+
+        /// <summary>
+        /// Read file content
+        /// </summary>
+        /// <param name="QueryInput"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResponseMessage GetLCCLogFileContent([FromBody]QueryInput QueryInput)
+        {
+            LCCLogData _objLCCLogData = new LCCLogData(QueryInput);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new { LogContent = _objLCCLogData.GetLCCFileContent() });
+        } 
+
+        #endregion
+
     }
 }

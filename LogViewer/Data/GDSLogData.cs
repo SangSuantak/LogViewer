@@ -8,20 +8,20 @@ using System.Web;
 
 namespace LogViewer.Data
 {
-    public class WBSLogData
+    public class GDSLogData
     {
         string _strConnectionString;
         SqlCommand sqlcmd;
         SqlConnection sqlCon;
 
-        public WBSLogData(string ConnectionString)
+        public GDSLogData(string ConnectionString)
         {
             _strConnectionString = ConnectionString;            
         }
 
-        public List<WBSLog> GetWBSLog(string ReferenceId)
+        public List<GDSLog> GetWBSLog(string ReferenceId)
         {
-            List<WBSLog> _lstWBSLog = new List<WBSLog>();
+            List<GDSLog> _lstWBSLog = new List<GDSLog>();
             try
             {
                 using (sqlCon = new SqlConnection(_strConnectionString))
@@ -34,10 +34,10 @@ namespace LogViewer.Data
                         sqlcmd.CommandType = CommandType.StoredProcedure;
                         sqlcmd.CommandText = "usp_util_FetchTransactionLog";
                         IDataReader dr = sqlcmd.ExecuteReader();
-                        WBSLog _obWBSjLog;
+                        GDSLog _obWBSjLog;
                         while (dr.Read())
                         {
-                            _obWBSjLog = new WBSLog();
+                            _obWBSjLog = new GDSLog();
                             _obWBSjLog.ReferenceId = Convert.ToString(dr["FLT_HeaderID"]);
                             _obWBSjLog.TransactionName = Convert.ToString(dr["TrnName"]);
                             _obWBSjLog.InputXML = Convert.ToString(dr["InputXML"]);

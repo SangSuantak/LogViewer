@@ -19,7 +19,7 @@ namespace LogViewer
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //Set the Global Values
-            Global.SetValues();
+            //Global.SetGlobalValues();
             GlobalConfiguration.Configuration.MessageHandlers.Add(new CompressHandler());
         }
     }

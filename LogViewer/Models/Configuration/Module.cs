@@ -5,6 +5,7 @@ namespace LogViewer.Models.Configuration
     public class Module
     {
         public string Name { get; set; }
+        public bool IsLCC { get; set; }
         public List<Application> Applications { get; set; }
     }
 }

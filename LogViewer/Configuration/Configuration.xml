@@ -7,7 +7,7 @@
   <Modules>
     <Module>
       <Name>ADMIN</Name>
-      <Applications>        
+      <Applications>
         <Application>
           <Name>B2BRole</Name>
           <HasWBSLogs>false</HasWBSLogs>
@@ -73,7 +73,35 @@
             <Nature>Absolute</Nature>
           </ExceptionLogPath>
         </Application>
-      </Applications>      
+      </Applications>
+    </Module>
+    <Module>
+      <Name>LCC Wrapper</Name>
+      <IsLCC>true</IsLCC>
+      <Applications>
+        <Application>
+          <Name>LCC Wrapper BIS 3.0</Name>
+          <HasWBSLogs>false</HasWBSLogs>          
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Relative</Nature>
+          </ExceptionLogPath>
+        </Application>
+      </Applications>
+    </Module>
+    <Module>
+      <Name>LCC Consolidator</Name>
+      <IsLCC>true</IsLCC>
+      <Applications>
+        <Application>
+          <Name>Consolidator Wrapper BIS 3.0</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>D:\WORKAREA\Paul\Published\ConolidatorWrapper\ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+      </Applications>
     </Module>
   </Modules>
   <Defaults>
@@ -84,4 +112,10 @@
     <ConnectionString>Data Source=EDCORE\SQLSVR2K8;Initial Catalog=dbBISSeg;User ID=sa;Password=d3v$QL$3rv3r</ConnectionString>
     <!--<ConnectionString>Data Source=.;Initial Catalog=dbBISRole;Integrated Security=SSPI</ConnectionString>-->
   </Defaults>
+  <Tabs>
+    <ShowApplicationLogs>true</ShowApplicationLogs>
+    <ShowGDSLogs>true</ShowGDSLogs>
+    <ShowLCCLogs>true</ShowLCCLogs>
+    <ShowEncryptionDecryption>false</ShowEncryptionDecryption>
+  </Tabs>
 </Configuration>

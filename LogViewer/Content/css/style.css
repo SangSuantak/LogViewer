@@ -54,3 +54,11 @@ footer {
     height: 32px;
     margin-bottom: -11px;
 }
+
+.clr-folder {
+    color: #FFE20A;
+}
+
+.clr-xml {
+    color: #FFB173;
+}
