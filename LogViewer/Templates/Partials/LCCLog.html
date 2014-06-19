@@ -26,7 +26,7 @@
             <span class="btn-link" data-ng-class="setRootDirectoryIcon($index)" data-ng-click="changeDirectory(dir, $index)">{{dir.DirectoryItemName}}</span>
         </li>
     </ol>
-    <div data-ng-show="LCCLog.length" class="container well well-sm" style="height:auto;max-height: 400px; overflow-x:hidden; overflow-y: auto;">
+    <div data-ng-show="LCCLog.length" class="container" style="height:auto;max-height: 400px; overflow-x:hidden; overflow-y: auto;">
         <div class="row" data-ng-repeat="log in LCCLog">
             <span class="glyphicon cursor" data-ng-class="directoryItemIconClass(log)">
             </span>
