@@ -212,8 +212,59 @@ namespace LogViewer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                 new { Error = e.Message });
             }
-        } 
-        
+        }
+
+        [HttpPost]
+        public HttpResponseMessage EncryptXML([FromBody]QueryInput QueryInput)
+        {
+            try
+            {
+                EncryptedValue _objEncrValue = EncryptDecrypt.EncryptDecryptConfigXML(true, QueryInput.EncrInputText);
+
+                if (_objEncrValue != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        new { EncryptedValue = _objEncrValue });
+                }
+                else
+                {
+                    throw new Exception("Encryption Failed");
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                new { Error = e.Message });
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage DecryptXML([FromBody]QueryInput QueryInput)
+        {
+            try
+            {
+                string _strSalt = QueryInput.SaltText ?? Utility.GenerateSalt();
+                string _strCipherText = EncryptDecrypt.Encrypt(QueryInput.EncrInputText, _strSalt);
+
+                EncryptedValue _objEncrValue = EncryptDecrypt.EncryptDecryptConfigXML(false, QueryInput.EncrInputText);
+
+                if (_objEncrValue != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        new { EncryptedValue = _objEncrValue });
+                }
+                else
+                {
+                    throw new Exception("Encryption Failed");
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK,
+                new { Error = e.Message });
+            }
+        }
+
         #endregion                
 
         #region LCC Logs

@@ -16,9 +16,12 @@ LogApp.controller("LCCLogController", ["$scope", "dataFactory", function ($scope
     }
 
     //Automatically called when module dropdown is changed
-    $scope.$watch("Module", function (newModule) {
+    $scope.$watch("Module", function (newModule) {        
         if (newModule) {
             $scope.Applications = newModule.Applications;
+        }
+        else {
+            $scope.Applications = [];
         }
     });
 

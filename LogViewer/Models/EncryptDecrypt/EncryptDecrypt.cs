@@ -12,10 +12,12 @@
 // Copyright (C) 2002 Obviex(TM). All rights reserved.
 //
 
+using LogViewer.Utils;
 using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml;
 
 /// <summary>
 /// This class uses a symmetric key algorithm (Rijndael/AES) to encrypt and
@@ -449,6 +451,119 @@ namespace LogViewer.Models.EncryptDecrypt
             {
                 throw;
             }
+        }
+
+        public static string GetValue(string strXPath, string inputXML, bool bDecrypt = true)
+        {
+            XmlDocument xDocConfig = new XmlDocument();
+            xDocConfig.LoadXml(inputXML);
+
+            string _strValue = string.Empty, _strSalt = string.Empty;
+            if (xDocConfig.DocumentElement != null)
+            {
+                if (xDocConfig.DocumentElement.Name.ToUpper().Equals("CONFIGURATION"))
+                {
+                    if (xDocConfig.DocumentElement.SelectSingleNode(strXPath) != null)
+                    {
+                        _strValue = xDocConfig.DocumentElement.SelectSingleNode(strXPath).InnerText;
+                    }
+
+                    // Retrieve Salt
+                    _strSalt = xDocConfig.DocumentElement.SelectSingleNode("AppVariables/Salt").InnerText;
+                }
+            }
+            if (bDecrypt && !string.IsNullOrWhiteSpace(_strValue))
+            {
+                _strValue = EncryptDecrypt.Decrypt(_strValue, _strSalt);
+            }
+            return _strValue;
+        }
+
+        public static EncryptedValue EncryptDecryptConfigXML(bool Encrypt, string inputXML)
+        {
+            XmlDocument xDocConfig = new XmlDocument();
+            string _strValue = string.Empty;
+            StringBuilder _sbTraversedNode = new StringBuilder();
+            EncryptedValue _objEncryptedValue = new EncryptedValue();
+
+            try
+            {
+                xDocConfig.LoadXml(inputXML);
+            }
+            catch (FileNotFoundException)
+            {
+                xDocConfig = null;
+            }
+            catch (Exception)
+            {
+                xDocConfig = null;
+            }
+
+            string Salt = string.Empty;
+
+            if (Encrypt)
+            {
+                Salt = Utility.GenerateSalt();
+            }
+            else
+            {
+                Salt = xDocConfig.DocumentElement.SelectSingleNode("AppVariables/Salt").InnerText;
+            }
+
+            if (xDocConfig != null)
+            {
+                Process(xDocConfig, Salt, Encrypt);
+            }
+
+            _objEncryptedValue.Salt = Salt;
+            _objEncryptedValue.CipherText = xDocConfig.InnerXml;
+
+            return _objEncryptedValue;
+
+            // Save Document
+            //xDocConfig.Save(_strConfigPhysicalPath);
+
+        }
+
+        private static void Process(XmlNode node, string Salt, bool Encrypt)
+        {
+            Process(node, 0, Salt, Encrypt);
+        }
+
+        private static void Process(XmlNode node, int level, string Salt, bool Encrypt)
+        {
+            try
+            {
+                foreach (XmlNode child in node.ChildNodes)
+                {
+                    if (child.NodeType.Equals(XmlNodeType.Element))
+                    {
+                        if (child.HasChildNodes && child.ChildNodes.Count > 0)
+                        {
+                            Process(child, level + 1, Salt, Encrypt);
+                        }
+                    }
+                    else if (child.NodeType.Equals(XmlNodeType.Text))
+                    {
+                        if (child.ParentNode != null && child.ParentNode.Name.Equals("Salt"))
+                        {
+                            if (Encrypt)
+                            {
+                                child.Value = Salt;
+                            }
+                        }
+                        else
+                        {
+                            child.Value = Encrypt ? EncryptDecrypt.Encrypt(child.Value, Salt) : EncryptDecrypt.Decrypt(child.Value, Salt);
+                        }
+                    }
+                }
+            }
+            catch (Exception exProcess)
+            {
+                throw exProcess;
+            }
+
         }
     }
 }

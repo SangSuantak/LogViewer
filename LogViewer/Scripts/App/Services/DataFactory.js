@@ -40,6 +40,14 @@ LogApp.factory("dataFactory", ["$http", function ($http) {
         return $http.post(_urlBase + "DecryptText", QueryInput);
     };
 
+    _datFactory.encryptXML = function (QueryInput) {
+        return $http.post(_urlBase + "EncryptXML", QueryInput);
+    };
+
+    _datFactory.decryptXML = function (QueryInput) {
+        return $http.post(_urlBase + "DecryptXML", QueryInput);
+    };
+
     _datFactory.getTabConfiguration = function () {
         return $http.get(_urlBase + "GetTabConfiguration", { cache: false });
     };

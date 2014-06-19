@@ -76,28 +76,108 @@
       </Applications>
     </Module>
     <Module>
-      <Name>LCC Wrapper</Name>
+      <Name>LCC Consolidator</Name>
       <IsLCC>true</IsLCC>
       <Applications>
         <Application>
-          <Name>LCC Wrapper BIS 3.0</Name>
-          <HasWBSLogs>false</HasWBSLogs>          
+          <Name>ConsolidatorWrapperBIS2.10</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>D:\WORKAREA\Paul\Published\ConolidatorWrapper\ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>ConsolidatorWrapperBIS3.0</Name>
+          <HasWBSLogs>false</HasWBSLogs>
           <ExceptionLogPath>
             <Path>ApplicationLogs</Path>
-            <Nature>Relative</Nature>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>ConsolidatorWrapperRTSF</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>ConsolidatorWrapperTForte</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>ConsolidatorWrapperTFair2.10</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>ConsolidatorWrapperWelgrow</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
           </ExceptionLogPath>
         </Application>
       </Applications>
     </Module>
     <Module>
-      <Name>LCC Consolidator</Name>
+      <Name>LCC Wrapper</Name>
       <IsLCC>true</IsLCC>
       <Applications>
         <Application>
-          <Name>Consolidator Wrapper BIS 3.0</Name>
+          <Name>LccWrapper2.10</Name>
           <HasWBSLogs>false</HasWBSLogs>
           <ExceptionLogPath>
-            <Path>D:\WORKAREA\Paul\Published\ConolidatorWrapper\ApplicationLogs</Path>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>LCCWrapper2.10Rep</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>LccWrapperAirpak</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>LCCWrapperBIS3.0</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>LccWrapperForSGCorporateCode</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
+            <Nature>Absolute</Nature>
+          </ExceptionLogPath>
+        </Application>
+        <Application>
+          <Name>LCCWrapperTFair2.10</Name>
+          <HasWBSLogs>false</HasWBSLogs>
+          <ExceptionLogPath>
+            <Path>ApplicationLogs</Path>
             <Nature>Absolute</Nature>
           </ExceptionLogPath>
         </Application>
@@ -116,6 +196,6 @@
     <ShowApplicationLogs>true</ShowApplicationLogs>
     <ShowGDSLogs>true</ShowGDSLogs>
     <ShowLCCLogs>true</ShowLCCLogs>
-    <ShowEncryptionDecryption>false</ShowEncryptionDecryption>
+    <ShowEncryptionDecryption>true</ShowEncryptionDecryption>
   </Tabs>
 </Configuration>

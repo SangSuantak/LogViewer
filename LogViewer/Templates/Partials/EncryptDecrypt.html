@@ -1,7 +1,9 @@
 ﻿<!-- Nav tabs -->
 <ul class="nav nav-tabs">
-    <li class="active" data-ng-click="emptyData()"><a href="#encrypt" data-toggle="tab">Encrypt</a></li>
-    <li data-ng-click="emptyData()"><a href="#decrypt" data-toggle="tab">Decrypt</a></li>
+    <li class="active" data-ng-click="emptyData()"><a href="#encrypt" data-toggle="tab">Encrypt Specific Value</a></li>
+    <li data-ng-click="emptyData()"><a href="#decrypt" data-toggle="tab">Decrypt Specific Value</a></li>
+    <li data-ng-click="emptyData()"><a href="#encryptxml" data-toggle="tab">Encrypt XML</a></li>
+    <li data-ng-click="emptyData()"><a href="#decryptxml" data-toggle="tab">Decrypt XML</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -12,6 +14,10 @@
                 <div class="form-group">
                     <input type="text" class="form-control input-sm w-300px" data-ng-model="EncrInputText" placeholder="Text to Encrypt" title="Text to Encrypt"
                            data-ng-required="true" data-select-on-click="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm w-300px" data-ng-model="SaltText" placeholder="Salt(Optional)" title="Salt"
+                           data-select-on-click="" maxlength="10" />
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary btn-sm" value="Encrypt" />
@@ -25,7 +31,7 @@
                 <div class="input-group mar-t5px">
                     <span class="input-group-addon">Salt</span>
                     <input type="text" class="form-control" value="{{EncryptedValue.Salt}}" data-select-on-click="" />
-                </div>                
+                </div>
             </div>
             <div class="alert alert-danger mar-t10px" data-ng-show="Error">
                 There was a problem while trying to encrypt the provided text. Please check your input.
@@ -53,13 +59,82 @@
         <div class="mar-t10px" data-ng-show="OriginalText">
             <div class="input-group">
                 <span class="input-group-addon">Original Text</span>
-                <input type="text" class="form-control" value="{{OriginalText}}" data-select-on-click="" />                
-            </div>                       
+                <input type="text" class="form-control" value="{{OriginalText}}" data-select-on-click="" />
+            </div>
         </div>
         <div class="alert alert-danger mar-t10px" data-ng-show="Error">
             There was a problem while trying to decrypt the Ciphertext. Please check your input.
             <br />
             Actual Message:&nbsp;{{Error}}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="encryptxml">
+        <div class="mar-t10px">
+            <form name="form3" role="form" class="form-horizontal" data-ng-submit="encryptXML()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Input XML</span>
+                        <textarea class="form-control" rows="10" data-ng-required="true" data-ng-model="EncrInputText" data-select-on-click=""></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Encrypt" />
+                </div>
+            </form>
+        </div>
+        <div class="form-horizontal mar-t10px" data-ng-show="EncryptedValue">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">Encrypted XML</span>
+                    <textarea class="form-control" rows="7" data-select-on-click="">{{EncryptedValue.CipherText}}</textarea>
+                </div>
+            </div>            
+            <div class="form-group">
+                <div class="input-group mar-t5px">
+                    <span class="input-group-addon">Salt</span>
+                    <input type="text" class="form-control" value="{{EncryptedValue.Salt}}" data-select-on-click="" />
+                </div>
+            </div>                        
+        </div>
+        <div class="form-horizontal mar-t10px" data-ng-show="Error">
+            <div class="form-group alert alert-danger">
+                There was a problem while trying to encrypt the provided XML. Please check your input.
+                <br />
+                Actual Message:&nbsp;{{Error}}
+            </div>
+        </div>        
+    </div>
+    <div class="tab-pane fade" id="decryptxml">
+        <div class="mar-t10px">
+            <form name="form4" role="form" class="form-horizontal" data-ng-submit="decryptXML()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Input XML</span>
+                        <textarea class="form-control" rows="10" data-ng-required="true" data-ng-model="EncrInputText" data-select-on-click=""></textarea>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <textarea class="form-control" rows="10" placeholder="Input XML" data-ng-required="true" data-ng-model="EncrInputText" data-select-on-click=""></textarea>
+                </div>-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Decrypt" />
+                </div>
+            </form>
+        </div>
+        <div class="form-horizontal mar-t10px" data-ng-show="EncryptedValue">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">Decrypted XML</span>
+                    <textarea class="form-control" rows="10" data-select-on-click="">{{EncryptedValue.CipherText}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-horizontal mar-t10px" data-ng-show="Error">
+            <div class="form-group alert alert-danger">
+                There was a problem while trying to decrypt the provided XML. Please check your input.
+                <br />
+                Actual Message:&nbsp;{{Error}}
+            </div>
         </div>
     </div>
 </div>
