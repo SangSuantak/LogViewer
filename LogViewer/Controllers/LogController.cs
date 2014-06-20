@@ -164,7 +164,7 @@ namespace LogViewer.Controllers
         {
             try
             {
-                string _strSalt = Utility.GenerateSalt();
+                string _strSalt = QueryInput.SaltText ?? Utility.GenerateSalt();
                 string _strCipherText = EncryptDecrypt.Encrypt(QueryInput.EncrInputText, _strSalt);
 
                 EncryptedValue _objEncrValue = new EncryptedValue
